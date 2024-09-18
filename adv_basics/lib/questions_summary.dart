@@ -42,6 +42,7 @@ class QuestionsSummary extends StatelessWidget {
                             style: GoogleFonts.lato(
                               color: const Color.fromARGB(255, 235, 203, 253),
                               fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 2),
