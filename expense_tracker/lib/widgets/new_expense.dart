@@ -11,7 +11,7 @@ class NewExpense extends StatefulWidget {
     return _NewExpenseState();
   }
 }
-
+ 
 class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
