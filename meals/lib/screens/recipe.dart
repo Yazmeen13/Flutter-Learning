@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/providers/favorites_provider.dart';
 
-import 'package:meals/providers/meals_provider.dart';
-
 class RecipeScreen extends ConsumerWidget {
   const RecipeScreen({
     super.key,
@@ -34,18 +32,31 @@ class RecipeScreen extends ConsumerWidget {
                     : 'Meal removed from favorites.'),
               ));
             },
-            icon: Icon(isFav ? Icons.star : Icons.star_border),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: Tween<double>(begin: 0.7, end: 1).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(isFav ? Icons.star : Icons.star_border,
+                  key: ValueKey(isFav)),
+            ),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              meal.imageUrl,
-              height: 300,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                meal.imageUrl,
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(height: 14),
             Text('Ingredients',
