@@ -1,8 +1,8 @@
 import 'package:favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
 
-class PlacePage extends StatelessWidget {
-  const PlacePage({super.key, required this.place});
+class PlaceDetail extends StatelessWidget {
+  const PlaceDetail({super.key, required this.place});
 
   final Place place;
 
@@ -10,11 +10,11 @@ class PlacePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(place.name),
+        title: Text(place.title),
         backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
       ),
       body: Center(
-        child: Text(place.name, style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Theme.of(context).colorScheme.onSurface)),
+        child: Text(place.title, style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Theme.of(context).colorScheme.onSurface)),
       ),
     );
   }
