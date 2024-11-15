@@ -13,9 +13,25 @@ class PlaceDetail extends StatelessWidget {
         title: Text(place.title),
         backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
       ),
-      body: Center(
-        child: Text(place.title, style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Theme.of(context).colorScheme.onSurface)),
+      body: Stack(
+        children: [
+          Image.file(
+            place.image,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          )
+        ],
       ),
+      
+      // Center(
+      //   child: Text(
+      //     place.title,
+      //     style: Theme.of(context).textTheme.titleSmall!.copyWith(
+      //           color: Theme.of(context).colorScheme.onSurface,
+      //         ),
+      //   ),
+      // ),
     );
   }
 }
