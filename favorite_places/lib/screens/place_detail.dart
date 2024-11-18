@@ -1,4 +1,5 @@
 import 'package:favorite_places/models/place.dart';
+import 'package:favorite_places/screens/map.dart';
 import 'package:flutter/material.dart';
 
 class PlaceDetail extends StatelessWidget {
@@ -6,7 +7,7 @@ class PlaceDetail extends StatelessWidget {
 
   final Place place;
 
-  String get locationImage{
+  String get locationImage {
     final lat = place.location.latitude;
     final lng = place.location.longitude;
 
@@ -34,9 +35,21 @@ class PlaceDetail extends StatelessWidget {
             right: 0,
             child: Column(
               children: [
-                CircleAvatar(radius: 70, backgroundImage: NetworkImage(locationImage),), 
+                GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => MapScreen(location: place.location, isSelecting: false,),
+                        ),
+                      );
+                    },
+                    child: CircleAvatar(
+                      radius: 70,
+                      backgroundImage: NetworkImage(locationImage),
+                    )),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -46,7 +59,6 @@ class PlaceDetail extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
-
                   ),
                   alignment: Alignment.center,
                   child: Text(place.location.address,
@@ -58,15 +70,6 @@ class PlaceDetail extends StatelessWidget {
           ),
         ],
       ),
-
-      // Center(
-      //   child: Text(
-      //     place.title,
-      //     style: Theme.of(context).textTheme.titleSmall!.copyWith(
-      //           color: Theme.of(context).colorScheme.onSurface,
-      //         ),
-      //   ),
-      // ),
     );
   }
 }
